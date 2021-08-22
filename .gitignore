@@ -1,0 +1,3 @@
+*.zip
+Gemfile.lock
+.byebug_history
