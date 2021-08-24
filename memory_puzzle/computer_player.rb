@@ -8,4 +8,8 @@ class ComputerPlayer
         @known_cards[val]= pos unless @known_cards.include?(val)
     end
 
+    def get_input(moves)
+
+    end
+
 end

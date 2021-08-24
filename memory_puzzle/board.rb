@@ -12,6 +12,7 @@ class Board
     end
 
     def render
+        (system "clear")
         puts "  0 1 2 3"
         @grid.each.with_index do |row, i|
             print "#{i} "
@@ -46,11 +47,11 @@ class Board
     #     row, col = pos
     #     @grid[row][col] = val
     # end
-    def get_valid_moves()
+    def get_valid_moves
         moves = []
         (0...@grid.length).each do |i|
             (0...@grid.length).each do |j|
-               moves << @grid[i][j] unless @grid[i][j].face_up
+               moves << [i,j] unless @grid[i][j].face_up
             end
         end
         moves
