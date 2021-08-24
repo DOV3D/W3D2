@@ -1,25 +1,24 @@
 require_relative "board"
 require_relative "card"
+require_relative "human_player"
 
 class Game
   def initialize
     @board = Board.new
     @previous_guess = nil
+    @player = HumanPlayer.new
   end
 
   def play
     until over?
       @board.render
-      pos = prompt_player
+      pos = @player.prompt
       make_guess(pos)
       (system "clear")
     end
   end
 
-  def prompt_player
-    puts "Enter a guess with a space like 3 1:"
-    pos = gets.chomp.split.map(&:to_i)
-  end
+  
 
   # [0,0]
 
@@ -31,6 +30,7 @@ class Game
       if @board[@previous_guess] == @board[pos]
         @board[pos].reveal
         puts "You got a match!"
+        @previous_guess = nil
       else
         (system "clear")
         @board[pos].reveal
@@ -38,6 +38,7 @@ class Game
         sleep(2)
         @board[pos].hide
         @board[@previous_guess].hide
+        @previous_guess = nil
       end
     end
   end
