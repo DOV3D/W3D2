@@ -11,16 +11,12 @@ class Game
 
   def play
     until over?
+      (system "clear")
       @board.render
       pos = @player.prompt
       make_guess(pos)
-      (system "clear")
     end
   end
-
-  
-
-  # [0,0]
 
   def make_guess(pos)
     if @previous_guess.nil?

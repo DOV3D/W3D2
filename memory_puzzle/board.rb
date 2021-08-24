@@ -12,7 +12,9 @@ class Board
     end
 
     def render
-        @grid.each do |row|
+        puts "  0 1 2 3"
+        @grid.each.with_index do |row, i|
+            print "#{i} "
             row.each do |card|
                 print card.display + " "
             end
