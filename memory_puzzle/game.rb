@@ -40,6 +40,7 @@ class Game
       if @board[@previous_guess] == @board[pos]
         @board[pos].reveal
         puts "You got a match!"
+        @player.receive_match(@board[pos])
         sleep(1)
         @previous_guess = nil
       else

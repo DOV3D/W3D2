@@ -14,4 +14,7 @@ class HumanPlayer
     def receive_revealed_card(pos, val)
     end
 
+    def receive_match(letter)
+    end
+
 end
