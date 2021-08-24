@@ -50,7 +50,7 @@ class Board
         end
     end
 
-    def check_square(start1, start2)
+    def square_solved?(start1, start2)
         arr = []
         (start1..start1+2).each do |i|
             (start2..start2+2).each do |j|
@@ -61,17 +61,17 @@ class Board
         arr.uniq.length == 9 && arr.min == 1 && arr.max == 9
     end
 
-    def squares_solved?
+    def all_squares_solved?
         (0..6).step(3) do |i|
             (0..6).step(3) do |j|
-                return false unless check_square(i,j)
+                return false unless square_solved?(i,j)
             end
         end
         true
     end
 
     def solved?
-        rows_solved? && cols_solved? && squares_solved?
+        rows_solved? && cols_solved? && all_squares_solved?
     end
 
 end
