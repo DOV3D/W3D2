@@ -27,6 +27,7 @@ class Game
       end
       make_guess(pos)
     end
+    @board.render
     puts "You won!"
   end
 
@@ -40,7 +41,7 @@ class Game
       if @board[@previous_guess] == @board[pos]
         @board[pos].reveal
         puts "You got a match!"
-        @player.receive_match(@board[pos])
+        @player.receive_match(@board[pos].value)
         sleep(1)
         @previous_guess = nil
       else
