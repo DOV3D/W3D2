@@ -6,7 +6,7 @@ class Board
     end
 
     def won?
-        @grid.all? do |row| 
+        @grid.all? do |row|
             row.all? {|card| card.face_up}
         end
     end
@@ -29,14 +29,10 @@ class Board
         end
 
         arr.shuffle!
-        grid = []
-        4.times do |i|
-            grid << arr[4*i...4*(i+1)]
-        end
-        grid
+        arr.each_slice(4).to_a
     end
 
-    def reveal(pos)
+    def reveal_card(pos)
         self[pos].reveal
     end
 
