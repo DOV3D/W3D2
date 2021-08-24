@@ -7,8 +7,11 @@ class HumanPlayer
         pos = gets.chomp.split.map(&:to_i)
     end
 
-    def get_input(moves)
+    def get_input(moves, previous_guess, letter)
         prompt
+    end
+
+    def receive_revealed_card(pos, val)
     end
 
 end

@@ -1,9 +1,10 @@
 require_relative "board"
 require_relative "card"
 require_relative "human_player"
+require_relative "computer_player"
 
 class Game
-  def initialize(player=HumanPlayer.new)
+  def initialize(player=ComputerPlayer.new)
     @board = Board.new
     @previous_guess = nil
     @player = player
@@ -13,7 +14,13 @@ class Game
     until over?
       @board.render
       moves = @board.get_valid_moves
-      pos = @player.get_input(moves)
+      if @previous_guess
+        letter = @board[@previous_guess].value
+      else
+        letter = nil
+      end
+
+      pos = @player.get_input(moves, @previous_guess, letter)
       until moves.include?(pos)
         puts "Please enter a valid move"
         pos = @player.get_input(moves)
@@ -24,6 +31,8 @@ class Game
   end
 
   def make_guess(pos)
+    @player.receive_revealed_card(pos, @board[pos].value)
+
     if @previous_guess.nil?
       @previous_guess = pos
       @board[pos].reveal
