@@ -1,6 +1,6 @@
 class Tile
     attr_reader :value, :given
-    
+
     def initialize(value, given)
         @value = value
         @given = given
@@ -13,7 +13,6 @@ class Tile
     end
 
     def to_s
-        @value
+        @value.to_s
     end
-
 end
