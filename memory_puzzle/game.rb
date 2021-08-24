@@ -13,7 +13,11 @@ class Game
     until over?
       (system "clear")
       @board.render
-      pos = @player.prompt
+      move = @board.get_valid_moves
+       pos = @player.prompt
+      until move.include?(pos)
+        pos = @player.prompt
+      end
       make_guess(pos)
     end
   end

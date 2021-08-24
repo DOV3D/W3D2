@@ -46,5 +46,14 @@ class Board
     #     row, col = pos
     #     @grid[row][col] = val
     # end
+    def get_valid_moves()
+        moves = []
+        (0...@grid.length).each do |i|
+            (0...@grid.length).each do |j|
+               moves << @grid[i][j] unless @grid[i][j].face_up
+            end
+        end
+        moves
+    end
 
 end
