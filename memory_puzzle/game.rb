@@ -1,8 +1,8 @@
-require_relative 'board.rb'
-require_relative 'card.rb'
+require_relative "board"
+require_relative "card"
 
 class Game
-  def intialize
+  def initialize
     @board = Board.new
     @previous_guess = nil
   end
@@ -12,6 +12,7 @@ class Game
       @board.render
       pos = prompt_player
       make_guess(pos)
+      (system "clear")
     end
   end
 
@@ -31,6 +32,11 @@ class Game
         @board[pos].reveal
         puts "You got a match!"
       else
+        (system "clear")
+        @board[pos].reveal
+        @board.render
+        sleep(2)
+        @board[pos].hide
         @board[@previous_guess].hide
       end
     end
